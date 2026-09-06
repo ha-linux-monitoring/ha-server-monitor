@@ -1,0 +1,49 @@
+{
+  "config": {
+    "step": {
+      "confirm": {
+        "title": "HA Server Monitor agent discovered",
+        "description": "Found an HA Server Monitor agent at {host} (hostname: {name}). Add it and pair it now?"
+      },
+      "user": {
+        "title": "Add an HA Server Monitor agent manually",
+        "description": "Use this if the agent wasn't auto-discovered via mDNS (different subnet, Avahi not reachable, etc). Enter the host running the ha-server-monitor-agent package.",
+        "data": {
+          "host": "Host or IP address",
+          "port": "Port"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "This HA Server Monitor agent is already configured.",
+      "cannot_connect": "Couldn't reach the agent's /info endpoint at that host/port. Check it's running (systemctl status ha-server-monitor-agent) and reachable.",
+      "already_paired": "That agent is already paired with a different Home Assistant instance/entry. Clear its state file and restart it to re-pair (see the ha-server-monitor-agent project's README)."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "low_space_threshold_percent": "Low free space alert threshold (%)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "physical_type": { "name": "Type" },
+      "physical_description": { "name": "Description" },
+      "filesystem_type": { "name": "Filesystem type" },
+      "total_space": { "name": "Total space" },
+      "free_space": { "name": "Free space" }
+    },
+    "binary_sensor": {
+      "physical_health": { "name": "Health" },
+      "physical_alert": { "name": "Alert" },
+      "filesystem_low_space": { "name": "Low space" }
+    },
+    "button": {
+      "clear_alert": { "name": "Clear alert" }
+    }
+  }
+}
